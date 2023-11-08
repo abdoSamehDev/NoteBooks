@@ -1,0 +1,64 @@
+<%- include("partials/header.ejs") %>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a href="/">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+        class="bi bi-bookmark-heart mx-2" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z" />
+        <path
+          d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
+      </svg>
+    </a>
+    <a href="/">
+      <span class="fs-4 navbar-brand">NoteBooks</span>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a href="/orderByDate" class="order-buttons">
+            <button id="orderByDate" class="btn btn-primary <%= orderByDate ? 'active' : '' %>">
+              Order by Date
+            </button>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/orderByRating" class="order-buttons">
+            <button id="orderByRating" class="btn btn-primary <%= orderByRating ? 'active' : '' %>">
+              Order by Rating
+            </button>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h1 class="mb-4">Book List</h1>
+
+    <div class="row">
+      <% books.forEach(book=> { %>
+        <div class="col-md-4 mb-4">
+          <a href="/bookDetails/<%= book.id %>" class="text-light text-decoration-none">
+            <div class="card">
+              <img src="https://covers.openlibrary.org/b/id/<%= book.cover_id %>-M.jpg" class="card-img-top"
+                alt="Book Cover">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= book.title %> by <%= book.author %>
+                </h5>
+                <p class="card-text">
+                  <strong>Read Date:</strong>
+                  <%= book.read_date %><br>
+                    <strong>Rating:</strong>
+                    <%= book.rating %>
+                </p>
+                <p class="card-text">
+                  <%= book.brief %>
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <% }) %>
+    </div>
+  </div>
+  <%- include("partials/footer.ejs") %>
