@@ -1,0 +1,11 @@
+# Dependency directories
+/node_modules
+
+# OS-generated files
+Thumbs.db
+
+# Ignore user-specific Yarn configuration
+package-lock.json
+
+# Ignore the offline Bootstrap files (if you have them)
+public/bootstrap/
